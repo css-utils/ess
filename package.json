@@ -23,9 +23,11 @@
   "dependencies": {
     "css-sws": "^0.2.0",
     "jade2ast": "^0.1.7",
-    "postcss": "^4.0.3"
+    "postcss": "^4.0.3",
+    "postcss-nested": "^0.2.1"
   },
   "devDependencies": {
+    "ast2template": "^0.2.17",
     "mocha": "^2.1.0",
     "should": "^4.6.5"
   }

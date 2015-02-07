@@ -20,6 +20,8 @@ button
   Foobar(color=test)
     block test(color)
       color = color
+    block header
+      margin 10px
 
   = test('green')
 
@@ -30,7 +32,7 @@ button
     color : brown
 
   each v, k in [1,2,3,4]
-    &:nth(v)
+    &:nth(`v`)
       margin-left = v + 'px'
     .other
       padding 20px;

@@ -1,0 +1,7 @@
+import Button from 'constructor.ess?raw'
+
+.modal
+  Button(color='blue')
+    background: black
+    block mobile
+      background: white

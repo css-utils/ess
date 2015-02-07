@@ -1,0 +1,51 @@
+import foo from 'bar'
+
+- console.log('')
+
+= DOM(['body'], {'background': 'red'});
+
+var color = props.color || 'red'
+
+// this is a comment
+
+/* another comment */
+
+.button,
+.btn,
+button
+  color =color
+  yield
+  - debugger
+  Other(testing)
+  Foobar(color=test)
+    block test(color)
+      color = color
+
+  = test('green')
+
+  if props.color === 'blue'
+    &:active
+      outline: none
+  else
+    color : brown
+
+  each v, k in [1,2,3,4]
+    &:nth(v)
+      margin-left = v + 'px'
+    .other
+      padding 20px;
+
+  var foo = 'red'
+
+  @media mobile
+    yield mobile(123)
+
+function test(color, sel)
+  color =color
+  &.test
+    background =darken(color)
+
+  .`sel`
+    font helvetica
+
+export var foo = '123'

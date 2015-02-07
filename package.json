@@ -1,0 +1,32 @@
+{
+  "name": "ess",
+  "version": "0.1.0",
+  "description": "es6 stylesheets",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/css-utils/ess.git"
+  },
+  "keywords": [
+    "css",
+    "preprocessor"
+  ],
+  "author": "Cameron Bytheway <bytheway.cameron@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/css-utils/ess/issues"
+  },
+  "homepage": "https://github.com/css-utils/ess",
+  "dependencies": {
+    "css-sws": "^0.2.0",
+    "jade2ast": "^0.1.7",
+    "postcss": "^4.0.3"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "should": "^4.6.5"
+  }
+}

@@ -7,6 +7,7 @@ var slice = Array.prototype.slice;
 module.exports = function(selectors, props) {
   var children = slice.call(arguments, 2);
   if (typeof selectors === 'function') {
+    props = props || {};
     props.children = children;
     return selectors(props);
   }

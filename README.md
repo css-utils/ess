@@ -1,2 +1,2 @@
-# ess
+# ess-compiler
 es6 stylesheets

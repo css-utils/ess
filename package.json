@@ -1,5 +1,5 @@
 {
-  "name": "ess",
+  "name": "ess-compiler",
   "version": "0.1.0",
   "description": "es6 stylesheets",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/css-utils/ess.git"
+    "url": "https://github.com/css-utils/ess-compiler.git"
   },
   "keywords": [
     "css",
@@ -17,9 +17,9 @@
   "author": "Cameron Bytheway <bytheway.cameron@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/css-utils/ess/issues"
+    "url": "https://github.com/css-utils/ess-compiler/issues"
   },
-  "homepage": "https://github.com/css-utils/ess",
+  "homepage": "https://github.com/css-utils/ess-compiler",
   "dependencies": {
     "css-sws": "^0.2.0",
     "jade2ast": "^0.1.7",

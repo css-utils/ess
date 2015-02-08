@@ -1,0 +1,10 @@
+var sel = 'foobar'
+
+`sel`
+
+  &.focus,
+  &:focus
+    = backgroundColor({color: 'green'})
+
+function backgroundColor(opts)
+  background-color = opts.color || 'red'

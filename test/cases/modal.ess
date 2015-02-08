@@ -1,7 +1,11 @@
-import Button from 'constructor.ess?raw'
-
 .modal
   Button(color='blue')
     background: black
     block mobile
       background: white
+
+function Button(opts)
+  color = opts.color
+  = opts.children
+  @media (mobile)
+    = opts.mobile

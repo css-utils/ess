@@ -1,0 +1,9 @@
+var colors = {blue: 'blue', red: 'red'}
+
+each c, k in colors
+  if typeof c === 'string'
+    Color(name=k t=c bg=c h={bg: c, t: c})
+
+function Color(opts)
+  .foo
+    color = opts.t

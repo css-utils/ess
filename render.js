@@ -10,7 +10,7 @@ var slice = Array.prototype.slice;
 module.exports = function(mod, from) {
   var compiler = postcss([validate, nested]);
   return function(props) {
-    var out = mod.render(DOM, $get, props, null, genYield(props));
+    var out = mod.render(DOM, $get, props, null, genYield(props)) || '';
     var str = Array.isArray(out) ? out.join('') : out;
     return compiler.process(str, {from: from}).css;
   };
@@ -18,7 +18,7 @@ module.exports = function(mod, from) {
 
 function validate(css) {
   (css.nodes || []).forEach(function(node) {
-    if (!~node.selector.indexOf('&')) return;
+    if (!node.selector || !~node.selector.indexOf('&')) return;
     throw new Error('properties cannot be declared in the root. check ' + node.source.input.from);
   });
 }

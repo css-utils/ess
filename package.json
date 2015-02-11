@@ -1,6 +1,6 @@
 {
   "name": "ess-compiler",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "es6 stylesheets",
   "main": "index.js",
   "scripts": {

@@ -26,7 +26,9 @@ function validate(css) {
 function $get(path, parent, fallback) {
   for (var i = 0; i < path.length; i++) {
     if (!parent) return undefined;
-    parent = parent[path[i]];
+    child = parent[path[i]];
+    if (typeof child === 'function') parent = child.bind(parent);
+    else parent = child;
   }
   return parent;
 }

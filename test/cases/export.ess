@@ -1,0 +1,26 @@
+import {Foobar} from 'utils'
+
+.content
+  Foobar(color='red')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export function Foobar()
+  background = obj.color

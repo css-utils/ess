@@ -11,10 +11,16 @@ module.exports = function(mod, from) {
   var compiler = postcss([validate, nested]);
   return function(props) {
     var out = mod.render(DOM, $get, props, null, genYield(props)) || '';
-    var str = Array.isArray(out) ? out.join('') : out;
+    var str = flatten([], out).join('');
     return compiler.process(str, {from: from}).css;
   };
 };
+
+function flatten(acc, out) {
+  if (!Array.isArray(out)) return acc.push(out);
+  out.forEach(flatten.bind(null, acc));
+  return acc;
+}
 
 function validate(css) {
   (css.nodes || []).forEach(function(node) {

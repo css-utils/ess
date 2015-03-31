@@ -17,8 +17,8 @@ module.exports = function(mod, from) {
 };
 
 function flatten(acc, out) {
-  if (!Array.isArray(out)) return acc.push(out);
-  out.forEach(flatten.bind(null, acc));
+  if (!Array.isArray(out)) acc.push(out);
+  else out.forEach(flatten.bind(null, acc));
   return acc;
 }
 

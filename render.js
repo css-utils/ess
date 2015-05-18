@@ -8,7 +8,7 @@ var DOM = require('./dom');
 var slice = Array.prototype.slice;
 
 module.exports = function(mod, from) {
-  var compiler = postcss([validate, nested]);
+  var compiler = postcss([nested]);
   return function(props) {
     var out = mod.render(DOM, $get, props, null, genYield(props)) || '';
     var str = flatten([], out).join('');
@@ -20,13 +20,6 @@ function flatten(acc, out) {
   if (!Array.isArray(out)) acc.push(out);
   else out.forEach(flatten.bind(null, acc));
   return acc;
-}
-
-function validate(css) {
-  (css.nodes || []).forEach(function(node) {
-    if (!node.selector || !~node.selector.indexOf('&')) return;
-    throw new Error('properties cannot be declared in the root. check ' + node.source.input.from);
-  });
 }
 
 function $get(path, parent, fallback) {

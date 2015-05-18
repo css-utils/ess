@@ -1,0 +1,8 @@
+.modal
+  %./each()
+  %./export(foo='bar')
+    .bar
+      color red
+
+color blue
+background white

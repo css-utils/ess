@@ -8,9 +8,12 @@ var color = props.color || 'red'
 
 /* another comment */
 
+
+
 .button,
 .btn,
-button
+button,
+form
   color =color
   yield
   - debugger
@@ -42,6 +45,7 @@ button
 
 function test(color, sel)
   color =color
+  text-rendering optimizeLegibility
   &.test
     background =color
 

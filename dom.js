@@ -2,45 +2,46 @@
  * Module dependencies
  */
 
+var Rule = require('./lib/dom/rule');
+var AtRule = require('./lib/dom/atrule');
+
 var slice = Array.prototype.slice;
 
 module.exports = function(selectors, props) {
   var children = slice.call(arguments, 2);
+  props = props || {};
   if (typeof selectors === 'function') {
-    props = props || {};
     props.children = children;
     return selectors(props);
   }
 
-  return '\n' + formatSelectors(selectors) + ' {\n' +
-    formatProps(props) +
-    formatChildren(children) +
-  '}\n';
+  delete props.key;
+
+  if (selectors === '&' || selectors.length === 1 && selectors[0] === '&') return {
+    type: 'parent_props',
+    props: props
+  };
+
+  var extracted = extractParentProps(props, children);
+  if (selectors.indexOf('@') === 0) return new AtRule(selectors, extracted.props, extracted.children, extracted.raw);
+  return new Rule(selectors, extracted.props, extracted.children, extracted.raw);
 };
 
-function formatSelectors(selectors) {
-  return Array.isArray(selectors) ?
-    selectors.join(',\n') :
-    selectors;
-}
+function extractParentProps(props, children, init) {
+  if (children && !Array.isArray(children)) children = [children];
+  return (children || []).reduce(function(acc, child) {
+    if (Array.isArray(child) || child && child.nodes) return extractParentProps(props, child.nodes || child, acc);
 
-function formatProps(props) {
-  if (!props) return '';
-  var parts = [];
-  for (var k in props) {
-    if (k === 'key') continue;
-    parts.push('  ' + k + ': ' + props[k] + ';');
-  }
-  return parts.join('\n') + '\n';
-}
-
-function formatChildren(children) {
-  if (!children || children.length === 0) return '';
-  return children.map(function(child) {
-    if (Array.isArray(child)) return formatChildren(child);
-    if (!child) return '';
-    return child.split('\n').map(function(line) {
-      return '  ' + line;
-    }).join('\n');
-  }).join('\n') + '\n';
+    if (child && child.type === 'parent_props') {
+      for (var key in child.props) {
+        if (acc.props[key]) continue;
+        acc.props[key] = child.props[key];
+      }
+    } else if (typeof child === 'string') {
+      acc.raw.push(child);
+    } else {
+      acc.children.push(child);
+    }
+    return acc;
+  }, init || {props: props, raw: [], children: []});
 }

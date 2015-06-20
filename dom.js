@@ -4,6 +4,7 @@
 
 var Rule = require('./lib/dom/rule');
 var AtRule = require('./lib/dom/atrule');
+var assign = require('object-assign');
 
 var slice = Array.prototype.slice;
 
@@ -22,19 +23,19 @@ module.exports = function(selectors, props) {
     props: props
   };
 
-  var extracted = extractParentProps(props, children);
-  if (selectors.indexOf('@') === 0) return new AtRule(selectors, extracted.props, extracted.children, extracted.raw);
-  return new Rule(selectors, extracted.props, extracted.children, extracted.raw);
+  var extracted = extractParentProps(children);
+  props = assign(extracted.props, props);
+  if (selectors.indexOf('@') === 0) return new AtRule(selectors, props, extracted.children, extracted.raw);
+  return new Rule(selectors, props, extracted.children, extracted.raw);
 };
 
-function extractParentProps(props, children, init) {
+function extractParentProps(children, init) {
   if (children && !Array.isArray(children)) children = [children];
   return (children || []).reduce(function(acc, child) {
-    if (Array.isArray(child) || child && child.nodes) return extractParentProps(props, child.nodes || child, acc);
+    if (Array.isArray(child) || child && child.nodes) return extractParentProps(child.nodes || child, acc);
 
     if (child && child.type === 'parent_props') {
       for (var key in child.props) {
-        if (acc.props[key]) continue;
         acc.props[key] = child.props[key];
       }
     } else if (typeof child === 'string') {
@@ -43,5 +44,5 @@ function extractParentProps(props, children, init) {
       acc.children.push(child);
     }
     return acc;
-  }, init || {props: props, raw: [], children: []});
+  }, init || {props: {}, raw: [], children: []});
 }

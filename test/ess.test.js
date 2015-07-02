@@ -7,6 +7,7 @@ var read = fs.readFileSync;
 var readdir = fs.readdirSync;
 var evalM = require('eval');
 var render = require('../render');
+var babel = require('babel');
 
 describe('ess', function() {
   it('should construct an ast2template render function', function() {
@@ -23,8 +24,9 @@ describe('ess', function() {
       var str = ast2template(out, {
         keyName: false
       });
+      str = babel.transform(str).code;
       var mod = evalM(str, file, {require: require}, true);
-      render(mod)();
+      console.log(render(mod)() + '');
     });
   });
 });

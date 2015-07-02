@@ -24,7 +24,7 @@ form
     block header
       margin 10px
 
-  = test('green')
+  = test('green', 'back-tick')
 
   if props.color === 'blue'
     &:active

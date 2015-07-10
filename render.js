@@ -25,10 +25,10 @@ function $get(path, parent, fallback) {
 
 function genYield(props) {
   props = props || {};
-  return function $yield(name) {
+  return function $yield(name, $get, t) {
     if (!name) return props.children;
     var prop = props[name];
-    if (typeof prop === 'function') return prop.apply(null, slice.call(arguments, 1));
+    if (typeof prop === 'function') return prop.apply({g: $get, t: t}, slice.call(arguments, 3));
     return prop || '';
   };
 }

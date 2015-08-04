@@ -1,0 +1,18 @@
+@font-face
+  font-family Colfax
+  font-style normal
+  src url('./ColfaxWeb.eot')
+  src url('./ColfaxWeb.woff') format('woff')
+  font-weight 400
+
+@media (max-width: 100px)
+  .foo
+    color red
+
+@keyframes fade-in
+  0%
+    display initial
+    opacity 0
+  100%
+    display initial
+    opacity 1

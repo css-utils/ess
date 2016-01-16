@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/css-utils/ess-compiler",
   "dependencies": {
+    "css-selector-tokenizer": "^0.5.4",
     "css-sws": "^0.2.0",
     "jade2ast": "^0.1.7",
+    "loader-utils": "^0.2.12",
     "object-assign": "^3.0.0",
     "postcss": "4.1.10"
   },

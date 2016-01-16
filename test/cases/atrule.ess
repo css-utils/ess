@@ -16,3 +16,8 @@
   100%
     display initial
     opacity 1
+
+.foo
+  .bar
+    .baz
+      background-image url(./image.png)

@@ -4,11 +4,15 @@
 
 var Rule = require('./lib/dom/rule');
 var AtRule = require('./lib/dom/atrule');
+var File = require('./lib/dom/file');
 
 var slice = Array.prototype.slice;
 
 module.exports = function(selectors, props) {
   var children = slice.call(arguments, 2);
+
+  if (selectors === '__ESS_FILE__') return new File(props, children);
+
   props = props || [];
   if (typeof selectors === 'function') {
     props.children = children;
